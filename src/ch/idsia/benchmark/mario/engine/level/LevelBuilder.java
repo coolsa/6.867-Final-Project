@@ -50,7 +50,7 @@ public class LevelBuilder {
 	    odds[SingletonLevelElements.ODDS_CANNONS] = -10 + 5 * i.getLevelDifficulty();
 	    odds[SingletonLevelElements.ODDS_DEAD_ENDS] = 2 + 2 * i.getLevelDifficulty();
 
-	    if (i.getLevelType() != LevelGenerator.TYPE_OVERGROUND)
+	    if (i.getLevelType() != SingletonLevelElements.TYPE_OVERGROUND)
 	        odds[SingletonLevelElements.ODDS_HILL_STRAIGHT] = 0; //no hill straight in TYPE_OVERGROUND level
 
 	     int totalOdds = 0;
