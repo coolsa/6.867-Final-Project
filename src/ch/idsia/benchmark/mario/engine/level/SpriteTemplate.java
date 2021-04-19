@@ -96,19 +96,20 @@ public void spawn(LevelScene levelScene, int x, int y, int dir)
 {
     if (isDead) return;
 
+    SpriteFactory spriteFactory = new SpriteFactory();
+
     if (type == Sprite.KIND_ENEMY_FLOWER)
     {
-        sprite = new FlowerEnemy(levelScene, x * 16 + 15, y * 16 + 24, x, y);
+        sprite = spriteFactory.getSprite("FLOWERENEMY", levelScene, x * 16 + 15, y * 16 + 24, null, null, null, x, y, null, null, null, null, null);
     } else if (type == Sprite.KIND_WAVE_GOOMBA)
     {
-        sprite = new WaveGoomba(levelScene, x * 16 + 8, y * 16 + 15 - 3 * 16, dir, x, y);
+        sprite = spriteFactory.getSprite("WAVEGOOMBA", levelScene, x * 16 + 8, y * 16 + 15 - 3 * 16, dir, null, null, x, y, null, null, null, null, null);
     } else if (type == Sprite.KIND_PRINCESS)
     {
-        sprite = new Princess(levelScene, x * 16 - 16, y * 16 - 15, x, y);
+        sprite = spriteFactory.getSprite("PRINCESS", levelScene, x * 16 - 16, y * 16 - 15, null, null, null, x, y, null, null, null, null, null);
     } else
     {
-//            sprite = new Enemy(levelScene, x*16+8, y*16+15, dir, type, winged);
-        sprite = new Enemy(levelScene, x * 16 + 8, y * 16 + 15, dir, type, winged, x, y);
+        sprite = spriteFactory.getSprite("ENEMY", levelScene, x * 16 + 8, y * 16 + 15, dir, type, winged, x, y, null, null, null, null, null);
     }
     sprite.spriteTemplate = this;
     levelScene.addSprite(sprite);

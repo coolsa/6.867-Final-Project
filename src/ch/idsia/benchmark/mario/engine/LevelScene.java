@@ -99,12 +99,15 @@ public static int killedCreaturesByShell;
 
 private Replayer replayer;
 
+public SpriteFactory spriteFactory;
+
 //    private int[] args; //passed to reset method. ATTENTION: not cloned.
 
 public LevelScene()
 {
     try
     {
+        spriteFactory = new SpriteFactory();
 //            System.out.println("Java::LevelScene: loading tiles.dat...");
 //            System.out.println("LS: System.getProperty(\"user.dir()\") = " + System.getProperty("user.dir"));
         Level.loadBehaviors(new DataInputStream(LevelScene.class.getResourceAsStream("resources/tiles.dat")));
@@ -259,10 +262,9 @@ public void tick()
 //                                    xCannon = x;
                             for (int i = 0; i < 8; i++)
                             {
-                                addSprite(new Sparkle(x * cellSize + 8, y * cellSize + (int) (Math.random() * cellSize), (float) Math.random() * dir, 0, 0, 1, 5));
+                                addSprite(spriteFactory.getSprite("SPARKLE", null, x, y, null, null, null, null, null, (float) Math.random() * dir, 0, 0, 1, 5));    
                             }
-                            addSprite(new BulletBill(this, x * cellSize + 8 + dir * 8, y * cellSize + 15, dir));
-
+                            addSprite(spriteFactory.getSprite("BULLETBILL", this, x * cellSize + 8 + dir * 8, y * cellSize + 15, dir, null, null, null, null, null, null, null, null, null));    
 //                                    hasShotCannon = true;
                         }
                     }
@@ -359,24 +361,24 @@ public void bump(int x, int y, boolean canBreakBricks)
         {
 //            if (randomGen.nextInt(5) == 0 && level.difficulty > 4)
 //            {
-//                addSprite(new GreenMushroom(this, x * cellSize + 8, y * cellSize + 8));
+//                addSprite(spriteFactory.getSprite("GREENMUSHROOM", this, x * cellSize + 8, y * cellSize + 8, null, null, null, null, null, null, null, null, null, null));
 //                ++level.counters.greenMushrooms;
 //            } else
             {
                 if (!Mario.large)
                 {
-                    addSprite(new Mushroom(this, x * cellSize + 8, y * cellSize + 8));
+                    addSprite(spriteFactory.getSprite("MUSHROOM", this, x * cellSize + 8, y * cellSize + 8, null, null, null, null, null, null, null, null, null, null));
                     ++level.counters.mushrooms;
                 } else
                 {
-                    addSprite(new FireFlower(this, x * cellSize + 8, y * cellSize + 8));
+                    addSprite(spriteFactory.getSprite("FIREFLOWER", this, x * cellSize + 8, y * cellSize + 8, null, null, null, null, null, null, null, null, null, null));
                     ++level.counters.flowers;
                 }
             }
         } else
         {
             Mario.gainCoin();
-            addSprite(new CoinAnim(x, y));
+            addSprite(spriteFactory.getSprite("COINANIM", null, x, y, null, null, null, null, null, null, null, null, null, null));
         }
     }
 
@@ -388,7 +390,7 @@ public void bump(int x, int y, boolean canBreakBricks)
             level.setBlock(x, y, (byte) 0);
             for (int xx = 0; xx < 2; xx++)
                 for (int yy = 0; yy < 2; yy++)
-                    addSprite(new Particle(x * cellSize + xx * 8 + 4, y * cellSize + yy * 8 + 4, (xx * 2 - 1) * 4, (yy * 2 - 1) * 4 - 8));
+                    addSprite(spriteFactory.getSprite("PARTICLE", null, x * cellSize + xx * 8 + 4, y * cellSize + yy * 8 + 4, null, null, null, null, null, (xx * 2 - 1) * 4, (yy * 2 - 1) * 4 - 8, null, null, null));        
         } else
         {
             level.setBlockData(x, y, (byte) 4);
@@ -403,7 +405,8 @@ public void bumpInto(int x, int y)
     {
         Mario.gainCoin();
         level.setBlock(x, y, (byte) 0);
-        addSprite(new CoinAnim(x, y + 1));
+        addSprite(spriteFactory.getSprite("COINANIM", null, x, y + 1, null, null, null, null, null, null, null, null, null, null));
+
     }
 
     for (Sprite sprite : sprites)
