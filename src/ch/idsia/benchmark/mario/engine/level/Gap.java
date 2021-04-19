@@ -1,4 +1,4 @@
-package ch.idsia.benchmark.mario.engine.levelBuilderPattern;
+package ch.idsia.benchmark.mario.engine.level;
 
 import java.util.Random;
 
