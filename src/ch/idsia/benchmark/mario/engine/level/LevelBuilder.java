@@ -79,7 +79,7 @@ public class LevelBuilder {
 
 	    int currentLength = 0; //total level currentLength so far
 	    
-	    //by default mario supposed to start on a straight surface
+	    //by default supposed to start on a straight surface
 	    int floor = SingletonLevelElements.DEFAULT_FLOOR;
 	    if (i.getIsFlatLevel())
 	        floor = i.getHeight() - 1 - SingletonLevelElements.globalRandom.nextInt(4);
@@ -243,7 +243,7 @@ public class LevelBuilder {
 	                    if (canDeco)
 	                    {
 	                        //if (creaturesRandom.nextInt(35) > levelDifficulty + 1) addEnemiesLine(x0 + 1, x1 - 1, floor - 1);
-	                        buildCoins(x0, x1, floor, s, e);
+	                        //buildCoins(x0, x1, floor, s, e);
 	                    }
 	                }
 	            }
