@@ -10,7 +10,7 @@ import be.abeel.util.Pair;
 
 import project6867.ClassifierTrainer.ClassifierType;
 import weka.classifiers.bayes.NaiveBayes;
-import weka.core.parser.JFlex.Out;
+//import weka.core.parser.JFlex.Out;
 
 import net.sf.javaml.classification.Classifier;
 import net.sf.javaml.classification.KNearestNeighbors;
